@@ -1,38 +1,29 @@
 # QuickTuli Render Deploy
 
-These are the files to put in your GitHub repo for Render:
+Files in this repo:
 
-- `app.py`
-- `requirements.txt`
-- `render.yaml`
+- `tuli.py`
+- `requirementss.txt`
 - `.gitignore`
-- `.env.example`
 - `README.md`
 
-Do not upload local database files or local app data:
+## Render Web Service settings
 
-- `quicktuli.db`
-- `*.db-journal`
-- `instance/`
-- `__pycache__/`
-- `.env`
+- Build Command: `pip install -r requirementss.txt`
+- Start Command: `gunicorn tuli:app`
 
-## Render settings
+## Environment variables
 
-- Build command: `pip install -r requirements.txt`
-- Start command: `gunicorn app:app`
-
-## Environment variables in Render
-
-Add this in your Render web service:
+Set this in Render:
 
 - `SECRET_KEY`
 
-## Current database setup
+## Notes
 
-This app currently uses SQLite through `instance/quicktuli.db`.
+This app currently uses SQLite.
+Do not upload local database files like `quicktuli.db`.
+If you want to use a Render PostgreSQL database, the code must be updated to use `DATABASE_URL`.
 
-That means you have two choices on Render:
 
 1. Deploy it as-is and attach a persistent disk for SQLite.
 2. Convert it to PostgreSQL if you want to use a Render Postgres database.
